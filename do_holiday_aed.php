@@ -71,4 +71,4 @@ if($target=="user") {
     }
     $AppUI->setMsg( "User Holidays updated" );
 }
-$AppUI->redirect();
+$AppUI->redirect('m=holiday');

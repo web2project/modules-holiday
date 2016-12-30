@@ -30,7 +30,7 @@ if ($newcal_working_days != $cal_working_days) {
     $obj->config_value = $newcal_working_days;
     if (($msg = $obj->store($AppUI))) {
         $AppUI->setMsg($msg, UI_MSG_ERROR);
-        $AppUI->redirect();
+        $AppUI->redirect('m=holiday');
     } 
 }
 $cal_day_start = w2PgetConfig("cal_day_start");
@@ -46,7 +46,7 @@ if ($newcal_day_start != $cal_day_start) {
     $obj->config_value = $newcal_day_start;
     if (($msg = $obj->store($AppUI))) {
         $AppUI->setMsg($msg, UI_MSG_ERROR);
-        $AppUI->redirect();
+        $AppUI->redirect('m=holiday');
     } 
 }
 $cal_day_end = w2PgetConfig("cal_day_end");
@@ -62,8 +62,8 @@ if ($newcal_day_end != $cal_day_end) {
     $obj->config_value = $newcal_day_end;
     if (($msg = $obj->store($AppUI))) {
         $AppUI->setMsg($msg, UI_MSG_ERROR);
-        $AppUI->redirect();
+        $AppUI->redirect('m=holiday');
     } 
 }
 $AppUI->setMsg( "Settings updated" );
-$AppUI->redirect();
+$AppUI->redirect('m=holiday');
