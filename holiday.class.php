@@ -24,55 +24,6 @@ class CHoliday extends w2p_Core_BaseObject
         parent::__construct('holiday', 'holiday_id');
     }
 
-    public function loadFull(CAppUI $AppUI, $holidayId)
-    {
-        $q = new w2p_Database_Query();
-        $q->addTable('holiday');
-        $q->addQuery('holiday.*');
-        $q->addWhere('holiday.holiday_id = ' . (int) $holidayId);
-        $q->loadObject($this, true, false);
-    }
-
-    public function delete(CAppUI $AppUI)
-    {
-        $perms = $AppUI->acl();
-        /*
-         * TODO: This should probably use the canDelete method from above too to 
-         *     not only check permissions but to check dependencies... luckily the 
-         *     previous version didn't check it either, so we're no worse off.
-         */
-        if ($perms->checkModuleItem('holiday', 'delete', $this->holiday_id)) {
-            if ($msg = parent::delete()) {
-                return $msg;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public function store(CAppUI $AppUI)
-    {
-        $perms = $AppUI->acl();
-        $stored = false;
-        /*
-         * TODO: I don't like the duplication on each of these two branches, but I
-         *     don't have a good idea on how to fix it at the moment...
-         */
-        if ($this->holiday_id && $perms->checkModuleItem('holiday', 'edit', $this->holiday_id)) {
-            if (($msg = parent::store())) {
-                return $msg;
-            }
-            $stored = true;
-        }
-        if (0 == $this->holiday_id && $perms->checkModuleItem('holiday', 'add')) {
-            if (($msg = parent::store())) {
-                return $msg;
-            }
-            $stored = true;
-        }
-        return $stored;
-    }
-
     public function remove(CAppUI $AppUI, w2p_Utilities_Date $date)
     {
         $perms = $AppUI->acl();
