@@ -1,5 +1,7 @@
 <?php /* $Id$ $URL$ */
 
+global $AppUI;
+
 require_once 'PEAR/Holidays.php';
 require_once $AppUI->getLibraryClass("PEAR/Date");
 require_once "holiday_functions.class.php";

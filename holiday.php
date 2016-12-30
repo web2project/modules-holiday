@@ -3,6 +3,8 @@
 require_once 'PEAR/Holidays.php';
 require_once "holiday_functions.class.php";
 
+global $AppUI;
+
 $AppUI = is_object($AppUI) ? $AppUI : new w2p_Core_CAppUI();
 
 $user_id = w2PgetParam($_REQUEST, 'user_id', null);
